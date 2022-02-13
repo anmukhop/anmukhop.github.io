@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Qualitative study | Anirban Mukhopadhyay</title>
+    <link>https://anmukhop.github.io/tag/qualitative-study/</link>
+      <atom:link href="https://anmukhop.github.io/tag/qualitative-study/index.xml" rel="self" type="application/rss+xml" />
+    <description>Qualitative study</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 08 Dec 2021 05:52:40 +0000</lastBuildDate>
+    <image>
+      <url>https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Qualitative study</title>
+      <link>https://anmukhop.github.io/tag/qualitative-study/</link>
+    </image>
+    
+    <item>
+      <title>Red Flags: Combating ad hominem attacks in comment-based online discussions</title>
+      <link>https://anmukhop.github.io/project/red-flags-combating-ad-hominem-attacks-in-comment-based-online-discussions/</link>
+      <pubDate>Wed, 08 Dec 2021 05:52:40 +0000</pubDate>
+      <guid>https://anmukhop.github.io/project/red-flags-combating-ad-hominem-attacks-in-comment-based-online-discussions/</guid>
+      <description>&lt;p&gt;Trolling in social media has become a serious social issue. In this study, we aim to understand the needs of social media users who have experienced and witnessed trolling. Based on ethnographic interviews, we found that victims feel isolated and hurt among other psychological effects due to ad hominem attacks during online discourse. In order to address the issue, we propose a flagging mechanism that modifies the process of reporting currently found in popular platforms like Facebook, Instagram, and Twitter. The feature combats trolling through collaboration and by allowing bystanders and content creators to provide feedback that can help develop a shared understanding of community guidelines. We develop a prototype and perform user studies to evaluate the flagging feature. Semi-structured interviews combined with a small-scale user study establish that the proposed UI control on comment threads is able to make users feel supported when they encounter problematic content on the prototype platform.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

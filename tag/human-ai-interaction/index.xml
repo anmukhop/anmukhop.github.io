@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Human-AI Interaction | Anirban Mukhopadhyay</title>
+    <link>https://anmukhop.github.io/tag/human-ai-interaction/</link>
+      <atom:link href="https://anmukhop.github.io/tag/human-ai-interaction/index.xml" rel="self" type="application/rss+xml" />
+    <description>Human-AI Interaction</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 09 Dec 2021 03:53:18 +0000</lastBuildDate>
+    <image>
+      <url>https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Human-AI Interaction</title>
+      <link>https://anmukhop.github.io/tag/human-ai-interaction/</link>
+    </image>
+    
+    <item>
+      <title>Explorable Interactive Human Reposing</title>
+      <link>https://anmukhop.github.io/project/explorable-interactive-human-reposing/</link>
+      <pubDate>Thu, 09 Dec 2021 03:53:18 +0000</pubDate>
+      <guid>https://anmukhop.github.io/project/explorable-interactive-human-reposing/</guid>
+      <description>&lt;p&gt;Design&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;We first allow the user to read an image and we display the uploaded image to the user. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We then extract the pose from the body joint detection algorithm (OpenPose (&lt;a href=&#34;https://github.com/Hzzone/pytorch-openpose&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/Hzzone/pytorch-openpose&lt;/a&gt;)) and get two arrays (subset and candidate) representing the pose.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We map these ambiguous arrays (subset and candidate) into a user understandable body joint skeleton and display them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We make the joints interactable, where users can drag and drop joints.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We allow the user to click &amp;ldquo;replot&amp;rdquo; to get the final pose they want.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We map the edited pose back into the ambiguous arrays (subset and candidate) to be passed into the reposing model (CoCosNet-v2 (&lt;a href=&#34;https://github.com/microsoft/CoCosNet-v2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/microsoft/CoCosNet-v2&lt;/a&gt;)) to synthesize the final reposed image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We allow the user to use an image whose pose they like for pose extraction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We add &amp;ldquo;evaluate&amp;rdquo; button that will evaluate the accuracy of respecting the desired pose by utilizing the following metrics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Average keypoint distance (AKD): the average distance between the pose keypoint of the output image and the input pose keypoint.&lt;/li&gt;
+&lt;li&gt;Missing keypoint rate (MKR): the number of pose keypoints not detected in the generated image.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

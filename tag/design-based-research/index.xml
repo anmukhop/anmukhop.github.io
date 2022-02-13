@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design-based research | Anirban Mukhopadhyay</title>
+    <link>https://anmukhop.github.io/tag/design-based-research/</link>
+      <atom:link href="https://anmukhop.github.io/tag/design-based-research/index.xml" rel="self" type="application/rss+xml" />
+    <description>Design-based research</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 09 Feb 2022 03:04:00 +0000</lastBuildDate>
+    <image>
+      <url>https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Design-based research</title>
+      <link>https://anmukhop.github.io/tag/design-based-research/</link>
+    </image>
+    
+    <item>
+      <title>Expert-led crowdsourcing in Open Source Intelligence (OSINT) Investigations</title>
+      <link>https://anmukhop.github.io/project/expert-led-crowdsourcing-in-osint-investigations/</link>
+      <pubDate>Wed, 09 Feb 2022 03:04:00 +0000</pubDate>
+      <guid>https://anmukhop.github.io/project/expert-led-crowdsourcing-in-osint-investigations/</guid>
+      <description>&lt;p&gt;Developed a framework for students trained in social media information discovery and verification skills to augment the investigative practices of journalists, law enforcement officers, and human rights activists. I ran five study sessions where students contributed to real-world investigations being carried out by the experts.&lt;/p&gt;
+&lt;p&gt;I used design-based research (DBR) approach to develop the collaborative framework. Data collection was in the form of collaborative spreadsheets containing feedback from experts, semi-structured interviews with students and experts, and student reflection assignments.&lt;/p&gt;
+&lt;p&gt;The work is in preparation for CHI 2023.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

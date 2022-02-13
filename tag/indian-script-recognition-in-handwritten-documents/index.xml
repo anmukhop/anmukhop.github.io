@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Indian script recognition in handwritten documents | Anirban Mukhopadhyay</title>
+    <link>https://anmukhop.github.io/tag/indian-script-recognition-in-handwritten-documents/</link>
+      <atom:link href="https://anmukhop.github.io/tag/indian-script-recognition-in-handwritten-documents/index.xml" rel="self" type="application/rss+xml" />
+    <description>Indian script recognition in handwritten documents</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 05 Dec 2019 04:16:05 +0000</lastBuildDate>
+    <image>
+      <url>https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Indian script recognition in handwritten documents</title>
+      <link>https://anmukhop.github.io/tag/indian-script-recognition-in-handwritten-documents/</link>
+    </image>
+    
+    <item>
+      <title>Study and improvement of accuracy in the handwritten Indian script recognition problem</title>
+      <link>https://anmukhop.github.io/project/study-and-improvement-of-accuracy-in-the-handwritten-indian-script-recognition-problem/</link>
+      <pubDate>Thu, 05 Dec 2019 04:16:05 +0000</pubDate>
+      <guid>https://anmukhop.github.io/project/study-and-improvement-of-accuracy-in-the-handwritten-indian-script-recognition-problem/</guid>
+      <description>&lt;p&gt;Used texture and frequency-based features along with CNN. Performed classifier combination to achieve high accuracy in the script identification task.&lt;br&gt;
+Papers published:&lt;br&gt;
+[1] Mukhopadhyay, Anirban, et al. &amp;ldquo;A study of different classifier combination approaches for handwritten Indic Script Recognition.&amp;rdquo; Journal of Imaging (2018): 39.&lt;br&gt;
+[2] Mukhopadhyay, Anirban, et al. &amp;ldquo;Handwritten Indic script recognition based on the Dempster–Shafer theory of evidence.&amp;rdquo; Journal of Intelligent Systems 29.1 (2020): 264-282.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
