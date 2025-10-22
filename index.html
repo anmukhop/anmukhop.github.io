@@ -2,6 +2,55 @@
 
 
 <head>
+  <style>
+  /* ===== Publications Section Styling ===== */
+  .pubs-section {
+    font-size: 0.9rem;         /* smaller overall text */
+    line-height: 1.45;         /* tighter vertical spacing */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Smaller, but readable title size */
+  .pubs-section h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Reduce spacing between items */
+  .pubs-section ol li {
+    margin-bottom: 0.6rem;
+  }
+  
+  /* Reduce spacing inside inner bullet lists */
+  .pubs-section ol li ul {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+  
+  /* Keep links readable and consistent */
+  .pubs-section a {
+    color: #5a3acc;              /* matches BlueViolet or your theme accent */
+    text-decoration: none;
+  }
+  
+  .pubs-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: slightly dim secondary info (venue, location, etc.) */
+  .pubs-section i {
+    color: #666;
+    font-style: italic;
+  }
+  
+  /* Optional: emphasize conference tags */
+  .pubs-section b {
+    font-weight: 600;
+  }
+</style>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -887,6 +936,7 @@
         
       <p><b>I am on the job market and seeking scientist positions starting in May 2026.</b></p>
 
+  <div class="pubs-section">
 
     <h2>Publications</h2>
     
@@ -996,7 +1046,8 @@
         </p>
       </li>
     </ol>
-    
+ </div>
+   
 
 <!--     <p><b>A. Mukhopadhyay</b>, K. Luther. 2025.<a href="https://arxiv.org/pdf/2409.11672" target="_blank"> OSINT Clinic: Co-designing AI-Augmented Collaborative OSINT Investigations for Vulnerability Assessment. </a>In CHI Conference on Human Factors in Computing Systems (CHI ’25),
 April 26-May 1, 2025, Yokohama, Japan. ACM, New York, NY, USA, 22 pages.<b> (CHI 2025)</b></p>
@@ -1348,7 +1399,7 @@ April 26-May 1, 2025, Yokohama, Japan. ACM, New York, NY, USA, 22 pages.<b> (CHI
         <div class="card-body">
           <div class="d-flex align-content-start">
             <div class="mr-2 mb-2">
-              <img src="/media/icons/brands/HRI_logo.svg" width="56px" height="56px" alt="Honda Research Institute" loading="lazy">
+              <img src="/media/icons/brands/HRI_Logo.svg" width="56px" height="56px" alt="Honda Research Institute" loading="lazy">
             </div>
             <div>
               <div class="section-subheading card-title exp-title text-muted my-0">Research Intern, Human and Social Sciences Team</div>
