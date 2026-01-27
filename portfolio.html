@@ -1,0 +1,1304 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <style>
+  /* ===== Publications Section Styling ===== */
+  .pubs-section {
+    font-size: 0.9rem;         /* smaller overall text */
+    line-height: 1.45;         /* tighter vertical spacing */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Smaller, but readable title size */
+  .pubs-section h2 {
+    margin-top: 1rem;       /* adds vertical space above each h2 */
+    padding-top: 0.5rem;
+    font-size: 1.3rem !important;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Reduce spacing between items */
+  .pubs-section ol li {
+    margin-bottom: 0.4rem;
+  }
+  
+  /* Reduce spacing inside inner bullet lists */
+  .pubs-section ol li ul {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+  
+  /* Keep links readable and consistent */
+  .pubs-section a {
+    color: #5a3acc;              /* matches BlueViolet or your theme accent */
+    text-decoration: none;
+  }
+  
+  .pubs-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: slightly dim secondary info (venue, location, etc.) */
+  /* .pubs-section i {
+    color: #666;
+    font-style: italic;
+  } */
+  
+  /* Optional: emphasize conference tags */
+  .pubs-section b {
+    font-weight: 600;
+  }
+
+  #about .article-style {
+    font-size: 0.98rem;   /* slightly smaller (default is ~1rem) */
+    line-height: 1.5;     /* balanced readability */
+    /* color: #333;          optional: slightly darker text for better contrast  */
+  }
+
+  /* Optional: make the "Hi!" heading slightly smaller but still friendly */
+  #about h1, 
+  #about h2, 
+  #about h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ===== UX Research Portfolio Section ===== */
+  .portfolio-section {
+    margin: 2.5rem 0 1.5rem;
+    padding: 2.5rem 0 2rem;
+    background: linear-gradient(120deg, rgba(250, 248, 242, 0.7), rgba(240, 246, 255, 0.7));
+    border-radius: 28px;
+  }
+
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .portfolio-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: #e8f0ff;
+    color: #1d3a75;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 0.8rem;
+  }
+
+  .portfolio-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .portfolio-subtitle {
+    max-width: 680px;
+    margin: 0 auto 1.2rem;
+    color: #4a4a4a;
+    font-size: 0.98rem;
+  }
+
+  .portfolio-pills {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .portfolio-pill {
+    border: 1px solid #d7e0f1;
+    color: #2b3d63;
+    background: #fff;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    gap: 1.4rem;
+    padding: 0 1.5rem 0.5rem;
+  }
+
+  .portfolio-card {
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid #e4e9f5;
+    box-shadow: 0 14px 30px rgba(24, 32, 56, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .portfolio-thumb {
+    min-height: 160px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.2rem;
+    color: #1a2a3a;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .portfolio-thumb span {
+    background: rgba(255, 255, 255, 0.88);
+    padding: 0.35rem 0.65rem;
+    border-radius: 10px;
+  }
+
+  .thumb-chi {
+    background: linear-gradient(135deg, #e8f6ee, #e1ecff);
+  }
+
+  .thumb-clinic {
+    background: linear-gradient(135deg, #fff2db, #e8f1ff);
+  }
+
+  .thumb-ors {
+    background: linear-gradient(135deg, #f8ecff, #e7f7ff);
+  }
+
+  .thumb-cosint {
+    background: linear-gradient(135deg, #fef1f5, #e8fff5);
+  }
+
+  .portfolio-body {
+    padding: 1.2rem 1.2rem 1.4rem;
+  }
+
+  .portfolio-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: #4a5b7a;
+    margin-bottom: 0.6rem;
+  }
+
+  .portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .portfolio-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #f1f4fb;
+    color: #2f3b54;
+    font-weight: 600;
+  }
+
+  .portfolio-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.6rem;
+  }
+
+  .portfolio-card p {
+    font-size: 0.9rem;
+    color: #4d4d4d;
+    margin-bottom: 0.8rem;
+  }
+
+  .portfolio-claims {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .portfolio-claims h4 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2a3b58;
+    margin-bottom: 0.25rem;
+  }
+
+  .portfolio-claims ul {
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.85rem;
+    color: #3f3f3f;
+  }
+
+  .portfolio-links {
+    margin-top: 0.9rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .portfolio-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #244aa5;
+    background: #eef3ff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 900px) {
+    .portfolio-title {
+      font-size: 1.6rem;
+    }
+    .portfolio-grid {
+      padding: 0 1rem 0.5rem;
+    }
+  }
+</style>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Anirban Mukhopadhyay" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content=" Human-Centered AI Researcher, Department of Computer Science" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://anmukhop.github.io/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.246129d782c938a644fe2d653d8a976f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+
+  
+    <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Anirban Mukhopadhyay" />
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://anmukhop.github.io/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Anirban Mukhopadhyay" />
+  <meta property="og:url" content="https://anmukhop.github.io/" />
+  <meta property="og:title" content="Anirban Mukhopadhyay" />
+  <meta property="og:description" content="Human-Centered AI Researcher,         Department of Computer Science" /><meta property="og:image" content="https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://anmukhop.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta property="og:updated_time" content="2030-06-01T13:00:00&#43;00:00" />
+    
+  
+
+  
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://anmukhop.github.io/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "url": "https://anmukhop.github.io/"
+}
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Portfolio | Anirban Mukhopadhyay</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class="page-wrapper   "  >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8f76bdc9e086322ed5147724ebba3d06.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Anirban Mukhopadhyay</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Anirban Mukhopadhyay</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about" data-target="#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+          <li class="nav-item">
+            <a class="nav-link" href="/#publications" data-target="#publications"><span>Publications</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/#experience" data-target="#experience"><span>Experience</span></a>
+          </li>
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects" data-target="#projects"><span>Projects</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/portfolio.html"><span>Portfolio</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact" data-target="#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/uploads/resume.pdf" target="_blank"><span>Resume</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+<span class="js-widget-page d-none"></span>
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    <main class="page-body">
+    <section id="ux-portfolio" class="portfolio-section">
+      <div class="container">
+        <div class="portfolio-header">
+          <div class="portfolio-kicker">UX Research Portfolio</div>
+          <h2 class="portfolio-title">Featured Research Projects</h2>
+          <p class="portfolio-subtitle">
+            Case-study overviews centered on AI-first experiences, collaborative workspaces, and transparent, proactive, adaptive agents. Each project highlights prototyping plus mixed methods (qualitative + quantitative) and shows how impact evolved through feedback-driven iteration.
+          </p>
+          <div class="portfolio-pills">
+            <span class="portfolio-pill">AI Agents</span>
+            <span class="portfolio-pill">Proactive + Adaptive</span>
+            <span class="portfolio-pill">Transparency</span>
+            <span class="portfolio-pill">Collaborative Workspaces</span>
+            <span class="portfolio-pill">Mixed Methods</span>
+            <span class="portfolio-pill">Prototyping</span>
+          </div>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <div class="portfolio-thumb thumb-chi">
+              <span>CHI 2026 • Proactive AI Roles</span>
+            </div>
+            <div class="portfolio-body">
+              <div class="portfolio-meta">
+                <span>Conditionally Accepted • CHI 2026</span>
+                <span>AI-First Prototyping</span>
+              </div>
+              <div class="portfolio-tags">
+                <span class="portfolio-tag">Proactive Agents</span>
+                <span class="portfolio-tag">Transparency</span>
+                <span class="portfolio-tag">Mixed Methods (Qual + Quant)</span>
+              </div>
+              <h3>Exploring the Impact of Proactive Generative AI Agent Roles in Time-Sensitive Collaboration</h3>
+              <p>
+                Designed and evaluated facilitator vs. peer AI agents to understand how proactive support changes group coordination, transparency, memory support, and flow under time pressure.
+              </p>
+              <div class="portfolio-claims">
+                <div>
+                  <h4>Methods</h4>
+                  <ul>
+                    <li>Technology probes of proactive and adaptive agent behaviors.</li>
+                    <li>Mixed methods combining behavioral logs and qualitative feedback.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Procedure</h4>
+                  <ul>
+                    <li>Teams solved time-sensitive tasks with one agent role per condition.</li>
+                    <li>Iteration cycles refined agent transparency based on participant feedback.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Results</h4>
+                  <ul>
+                    <li>Peer agents boosted memory support and hint timing but sometimes disrupted flow.</li>
+                    <li>Facilitator agents improved coordination clarity with lower impact on outcomes.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Impact</h4>
+                  <ul>
+                    <li>Iterated agent transparency cues based on feedback to reduce over-reliance.</li>
+                    <li>Guidance for AI-first collaborative workspaces with proactive support.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="portfolio-links">
+                <a class="portfolio-link" href="/uploads/CHI2026-Paper.pdf" target="_blank">Paper PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-thumb thumb-clinic">
+              <span>CHI 2025 • OSINT Clinic</span>
+            </div>
+            <div class="portfolio-body">
+              <div class="portfolio-meta">
+                <span>CHI 2025</span>
+                <span>Co-Design + Mixed Methods</span>
+              </div>
+              <div class="portfolio-tags">
+                <span class="portfolio-tag">Collaborative Agents</span>
+                <span class="portfolio-tag">Transparency</span>
+                <span class="portfolio-tag">AI-First Workflows</span>
+              </div>
+              <h3>OSINT Clinic: Co-designing AI-Augmented Collaborative Investigations</h3>
+              <p>
+                Built a collaborative investigation clinic where students conduct AI-supported assessments using public data, and evaluated how transparent agents shaped teamwork and decision quality.
+              </p>
+              <div class="portfolio-claims">
+                <div>
+                  <h4>Methods</h4>
+                  <ul>
+                    <li>Three-phase co-design with rapid prototyping and feedback loops.</li>
+                    <li>Mixed methods: interviews, surveys, and workflow telemetry.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Procedure</h4>
+                  <ul>
+                    <li>Six students iteratively tested AI-augmented collaborative workflows.</li>
+                    <li>Pilot with partner organizations to validate feasibility and risks.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Results</h4>
+                  <ul>
+                    <li>AI streamlined investigation steps and improved team alignment.</li>
+                    <li>Transparency gaps limited trust in proactive recommendations.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Impact</h4>
+                  <ul>
+                    <li>Iterated interface transparency based on feedback to improve trust.</li>
+                    <li>Blueprint for AI-first collaborative workspaces in investigation settings.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="portfolio-links">
+                <a class="portfolio-link" href="https://dl.acm.org/doi/full/10.1145/3706598.3713283" target="_blank">ACM DL</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-thumb thumb-ors">
+              <span>CSCW 2024 • Research Studios</span>
+            </div>
+            <div class="portfolio-body">
+              <div class="portfolio-meta">
+                <span>CSCW 2024</span>
+                <span>Prototyping + Mixed Methods</span>
+              </div>
+              <div class="portfolio-tags">
+                <span class="portfolio-tag">Collaborative Workspaces</span>
+                <span class="portfolio-tag">Adaptive Agents</span>
+                <span class="portfolio-tag">Transparency</span>
+              </div>
+              <h3>OSINT Research Studios: Scaling Expert-Led Investigations</h3>
+              <p>
+                Created a flexible collaborative workspace that pairs expert investigators with trained novices and adaptive support to scale discovery and verification.
+              </p>
+              <div class="portfolio-claims">
+                <div>
+                  <h4>Methods</h4>
+                  <ul>
+                    <li>Design-based research (DBR) with iterative prototyping.</li>
+                    <li>Mixed methods to assess quality, workload, and collaboration.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Procedure</h4>
+                  <ul>
+                    <li>Structured investigations into macrotasks with expert oversight.</li>
+                    <li>Adaptive guidance tuned based on collaborator feedback.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Results</h4>
+                  <ul>
+                    <li>Improved throughput while maintaining transparency and quality.</li>
+                    <li>Reduced dependence on long-term expert-crowd relationships.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Impact</h4>
+                  <ul>
+                    <li>Iterated collaboration workflows based on feedback to reduce friction.</li>
+                    <li>Reusable framework for AI-supported collaborative investigations.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="portfolio-links">
+                <a class="portfolio-link" href="https://dl.acm.org/doi/10.1145/3637382" target="_blank">ACM DL</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-thumb thumb-cosint">
+              <span>DIS 2023 • CoSINT</span>
+            </div>
+            <div class="portfolio-body">
+              <div class="portfolio-meta">
+                <span>DIS 2023</span>
+                <span>Prototyping + Mixed Methods</span>
+              </div>
+              <div class="portfolio-tags">
+                <span class="portfolio-tag">Collaborative Agents</span>
+                <span class="portfolio-tag">Proactive Support</span>
+                <span class="portfolio-tag">AI-First Experiences</span>
+              </div>
+              <h3>CoSINT: Collaborative Capture-the-Flag for Misinformation</h3>
+              <p>
+                Designed a collaborative capture-the-flag interaction style that blends competition and teamwork with proactive guidance to investigate social media misinformation.
+              </p>
+              <div class="portfolio-claims">
+                <div>
+                  <h4>Methods</h4>
+                  <ul>
+                    <li>Four-month research-through-design process with rapid prototyping.</li>
+                    <li>Mixed methods evaluation of performance, trust, and collaboration.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Procedure</h4>
+                  <ul>
+                    <li>Built the CoSINT platform for structured collaborative tasks.</li>
+                    <li>Participants alternated between proactive hints and peer coordination.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Results</h4>
+                  <ul>
+                    <li>Proactive cues and collaboration accelerated debunking.</li>
+                    <li>Tensions emerged between incentives and cooperative work.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Impact</h4>
+                  <ul>
+                    <li>Iterated incentive design based on feedback to sustain teamwork.</li>
+                    <li>Informs AI-first collaborative experiences that preserve motivation.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="portfolio-links">
+                <a class="portfolio-link" href="https://doi.org/10.1145/3563657.3595997" target="_blank">DOI</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":false}</script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.247fd8f54253895301106e3006f53f38.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
