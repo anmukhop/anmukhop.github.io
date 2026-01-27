@@ -124,8 +124,8 @@
 
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-    gap: 1.4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem;
     padding: 0 1.5rem 0.5rem;
   }
 
@@ -211,6 +211,10 @@
     margin-bottom: 0.8rem;
   }
 
+  .portfolio-card .portfolio-desc {
+    font-size: 0.88rem;
+  }
+
   .portfolio-claims {
     display: grid;
     gap: 0.65rem;
@@ -252,6 +256,7 @@
       font-size: 1.6rem;
     }
     .portfolio-grid {
+      grid-template-columns: 1fr;
       padding: 0 1rem 0.5rem;
     }
   }
@@ -1030,40 +1035,34 @@
                 <span class="portfolio-tag">Mixed Methods (Qual + Quant)</span>
               </div>
               <h3>Exploring the Impact of Proactive Generative AI Agent Roles in Time-Sensitive Collaboration</h3>
-              <p>
-                Designed and evaluated facilitator vs. peer AI agents to understand how proactive support changes group coordination, transparency, memory support, and flow under time pressure.
+              <p class="portfolio-desc">
+                UX research on how proactive, transparent agents shape teamwork, memory support, and flow in time-sensitive collaboration.
               </p>
               <div class="portfolio-claims">
                 <div>
                   <h4>Methods</h4>
                   <ul>
-                    <li>Technology probes of proactive and adaptive agent behaviors.</li>
-                    <li>Mixed methods combining behavioral logs and qualitative feedback.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Procedure</h4>
-                  <ul>
-                    <li>Teams solved time-sensitive tasks with one agent role per condition.</li>
-                    <li>Iteration cycles refined agent transparency based on participant feedback.</li>
+                    <li>Technology probes of proactive/adaptive agent behaviors.</li>
+                    <li>Mixed methods: logs, surveys, and qualitative interviews.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Results</h4>
                   <ul>
-                    <li>Peer agents boosted memory support and hint timing but sometimes disrupted flow.</li>
-                    <li>Facilitator agents improved coordination clarity with lower impact on outcomes.</li>
+                    <li>Peer agents improved memory support but sometimes disrupted flow.</li>
+                    <li>Facilitator agents clarified coordination with limited outcome gains.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Impact</h4>
                   <ul>
-                    <li>Iterated agent transparency cues based on feedback to reduce over-reliance.</li>
-                    <li>Guidance for AI-first collaborative workspaces with proactive support.</li>
+                    <li>Iterated transparency cues to reduce over-reliance.</li>
+                    <li>Guidance for AI-first collaborative workspaces.</li>
                   </ul>
                 </div>
               </div>
               <div class="portfolio-links">
+                <a class="portfolio-link" href="/project-chi-2026.html">Project Details</a>
                 <a class="portfolio-link" href="/uploads/CHI2026-Paper.pdf" target="_blank">Paper PDF</a>
               </div>
             </div>
@@ -1084,40 +1083,34 @@
                 <span class="portfolio-tag">AI-First Workflows</span>
               </div>
               <h3>OSINT Clinic: Co-designing AI-Augmented Collaborative Investigations</h3>
-              <p>
-                Built a collaborative investigation clinic where students conduct AI-supported assessments using public data, and evaluated how transparent agents shaped teamwork and decision quality.
+              <p class="portfolio-desc">
+                UX research on AI-first collaborative investigations and how transparent agents shape team decision quality.
               </p>
               <div class="portfolio-claims">
                 <div>
                   <h4>Methods</h4>
                   <ul>
-                    <li>Three-phase co-design with rapid prototyping and feedback loops.</li>
-                    <li>Mixed methods: interviews, surveys, and workflow telemetry.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Procedure</h4>
-                  <ul>
-                    <li>Six students iteratively tested AI-augmented collaborative workflows.</li>
-                    <li>Pilot with partner organizations to validate feasibility and risks.</li>
+                    <li>Co-design with rapid prototyping and feedback loops.</li>
+                    <li>Mixed methods: interviews, surveys, telemetry.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Results</h4>
                   <ul>
-                    <li>AI streamlined investigation steps and improved team alignment.</li>
-                    <li>Transparency gaps limited trust in proactive recommendations.</li>
+                    <li>AI streamlined workflows and improved alignment.</li>
+                    <li>Transparency gaps reduced trust in proactive recommendations.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Impact</h4>
                   <ul>
-                    <li>Iterated interface transparency based on feedback to improve trust.</li>
-                    <li>Blueprint for AI-first collaborative workspaces in investigation settings.</li>
+                    <li>Iterated transparency to improve trust.</li>
+                    <li>Blueprint for AI-first collaborative workspaces.</li>
                   </ul>
                 </div>
               </div>
               <div class="portfolio-links">
+                <a class="portfolio-link" href="/project-osint-clinic.html">Project Details</a>
                 <a class="portfolio-link" href="https://dl.acm.org/doi/full/10.1145/3706598.3713283" target="_blank">ACM DL</a>
               </div>
             </div>
@@ -1138,40 +1131,34 @@
                 <span class="portfolio-tag">Transparency</span>
               </div>
               <h3>OSINT Research Studios: Scaling Expert-Led Investigations</h3>
-              <p>
-                Created a flexible collaborative workspace that pairs expert investigators with trained novices and adaptive support to scale discovery and verification.
+              <p class="portfolio-desc">
+                UX research on a collaborative workspace with adaptive support for expert-led investigations.
               </p>
               <div class="portfolio-claims">
                 <div>
                   <h4>Methods</h4>
                   <ul>
-                    <li>Design-based research (DBR) with iterative prototyping.</li>
-                    <li>Mixed methods to assess quality, workload, and collaboration.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Procedure</h4>
-                  <ul>
-                    <li>Structured investigations into macrotasks with expert oversight.</li>
-                    <li>Adaptive guidance tuned based on collaborator feedback.</li>
+                    <li>Design-based research with iterative prototyping.</li>
+                    <li>Mixed methods: quality, workload, collaboration.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Results</h4>
                   <ul>
-                    <li>Improved throughput while maintaining transparency and quality.</li>
-                    <li>Reduced dependence on long-term expert-crowd relationships.</li>
+                    <li>Improved throughput while maintaining quality.</li>
+                    <li>Reduced dependence on long-term expert-crowd ties.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Impact</h4>
                   <ul>
-                    <li>Iterated collaboration workflows based on feedback to reduce friction.</li>
-                    <li>Reusable framework for AI-supported collaborative investigations.</li>
+                    <li>Iterated workflows to reduce collaboration friction.</li>
+                    <li>Reusable framework for AI-supported collaboration.</li>
                   </ul>
                 </div>
               </div>
               <div class="portfolio-links">
+                <a class="portfolio-link" href="/project-ors.html">Project Details</a>
                 <a class="portfolio-link" href="https://dl.acm.org/doi/10.1145/3637382" target="_blank">ACM DL</a>
               </div>
             </div>
@@ -1192,40 +1179,34 @@
                 <span class="portfolio-tag">AI-First Experiences</span>
               </div>
               <h3>CoSINT: Collaborative Capture-the-Flag for Misinformation</h3>
-              <p>
-                Designed a collaborative capture-the-flag interaction style that blends competition and teamwork with proactive guidance to investigate social media misinformation.
+              <p class="portfolio-desc">
+                UX research on proactive guidance and collaboration in high-stakes, time-boxed investigations.
               </p>
               <div class="portfolio-claims">
                 <div>
                   <h4>Methods</h4>
                   <ul>
-                    <li>Four-month research-through-design process with rapid prototyping.</li>
-                    <li>Mixed methods evaluation of performance, trust, and collaboration.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Procedure</h4>
-                  <ul>
-                    <li>Built the CoSINT platform for structured collaborative tasks.</li>
-                    <li>Participants alternated between proactive hints and peer coordination.</li>
+                    <li>Research-through-design with rapid prototyping.</li>
+                    <li>Mixed methods: performance, trust, collaboration.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Results</h4>
                   <ul>
                     <li>Proactive cues and collaboration accelerated debunking.</li>
-                    <li>Tensions emerged between incentives and cooperative work.</li>
+                    <li>Incentives sometimes conflicted with teamwork.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>Impact</h4>
                   <ul>
-                    <li>Iterated incentive design based on feedback to sustain teamwork.</li>
-                    <li>Informs AI-first collaborative experiences that preserve motivation.</li>
+                    <li>Iterated incentives based on feedback to sustain teamwork.</li>
+                    <li>Informs AI-first collaborative experiences.</li>
                   </ul>
                 </div>
               </div>
               <div class="portfolio-links">
+                <a class="portfolio-link" href="/project-cosint.html">Project Details</a>
                 <a class="portfolio-link" href="https://doi.org/10.1145/3563657.3595997" target="_blank">DOI</a>
               </div>
             </div>
