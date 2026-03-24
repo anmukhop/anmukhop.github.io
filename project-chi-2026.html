@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="Anirban Mukhopadhyay" />
+  <meta name="description" content="Case study on designing proactive AI teammates for time-sensitive collaboration through mixed-methods UX research with Honda Research Institute US." />
+  <meta name="theme-color" content="#f5efe4" />
+  <title>Designing Proactive AI Teammates | Anirban Mukhopadhyay</title>
+  <script>
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.style.colorScheme = "light";
+  </script>
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/css/wowchemy.246129d782c938a644fe2d653d8a976f.css" />
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg: #f7f1e7;
+      --paper: #fffdf8;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #5a667e;
+      --line: #e5dccd;
+      --accent: #2158a8;
+      --accent-soft: #e8f0ff;
+      --gold: #f3b655;
+      --gold-soft: #fff2d9;
+      --green-soft: #e7f5ef;
+      --shadow: 0 18px 42px rgba(27, 36, 58, 0.08);
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: "Montserrat", "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(243, 182, 85, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(33, 88, 168, 0.12), transparent 26%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-copy {
+      padding: 1.55rem 1.65rem 1.7rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: #946205;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+      line-height: 1.16;
+      margin-bottom: 0.8rem;
+      max-width: none;
+    }
+
+    .hero-question {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 48rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-pill {
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #1e447d;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .hero-note {
+      padding: 1rem;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .hero-note h2 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .anchor-nav {
+      position: sticky;
+      top: 0.8rem;
+      z-index: 5;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      padding: 0.9rem 1rem;
+      border-radius: 22px;
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(27, 36, 58, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .anchor-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #325281;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: #f0f4fb;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .main-column {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .side-column {
+      position: sticky;
+      top: 4.8rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .section-card,
+    .side-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-card {
+      padding: 1.65rem;
+    }
+
+    .side-card {
+      padding: 1.1rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      color: #8d6519;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-card h2 {
+      font-size: 1.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-card p,
+    .section-card li {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 0.97rem;
+    }
+
+    .section-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .split-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .fact-stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .fact-box {
+      padding: 1rem;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #7f6e4f;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .fact-box strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .fact-box p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .role-grid,
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .role-card,
+    .takeaway-card,
+    .finding-card {
+      padding: 1.15rem;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .role-card.facilitator {
+      background: linear-gradient(160deg, #f9f5ea, #fffdf8);
+    }
+
+    .role-card.peer {
+      background: linear-gradient(160deg, #edf4ff, #fffdf8);
+    }
+
+    .role-card-header,
+    .takeaway-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .icon-badge {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 1rem;
+      flex: 0 0 auto;
+    }
+
+    .role-card.facilitator .icon-badge {
+      background: var(--gold-soft);
+      color: #a36909;
+    }
+
+    .role-card.peer .icon-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 1rem 0 1.1rem;
+    }
+
+    .stat-card {
+      padding: 1rem;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.65rem;
+      margin-bottom: 0.2rem;
+      color: var(--ink);
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .finding-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .qual-results-figure {
+      margin: 1rem 0 1.15rem;
+      padding: 1rem;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .qual-results-figure h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .qual-results-figure p {
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .qual-results-figure img {
+      width: min(100%, 560px);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #f8f4ec;
+    }
+
+    .finding-card {
+      position: relative;
+      padding-left: 4.1rem;
+    }
+
+    .finding-number {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: #9b6708;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .finding-card h3,
+    .role-card h3,
+    .takeaway-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .quote-panel {
+      padding: 1.2rem;
+      border-radius: 22px;
+      background: linear-gradient(140deg, #1f467f, #294f8b);
+      color: #fff;
+    }
+
+    .quote-panel p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .quote-panel strong {
+      display: block;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .side-card h3 {
+      font-size: 0.96rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .mini-item {
+      padding: 0.8rem 0.85rem;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
+    }
+
+    .mini-item span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .impact-banner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+      padding: 1.15rem 1.2rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--green-soft), #fffdf8);
+      border: 1px solid #d8ebdf;
+    }
+
+    .impact-banner a {
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    @media (max-width: 1060px) {
+      .content-grid,
+      .split-card {
+        grid-template-columns: 1fr;
+      }
+
+      .side-column {
+        position: static;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        padding: 1rem 0.9rem 3rem;
+      }
+
+      .hero-copy,
+      .section-card {
+        padding: 1.2rem;
+      }
+
+      .role-grid,
+      .takeaway-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        max-width: none;
+      }
+
+      .anchor-nav {
+        top: 0.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <div class="topbar">
+      <a href="/portfolio.html">Back to portfolio</a>
+      <a href="/">Home</a>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div>
+          <div class="eyebrow"><i class="fas fa-users"></i> Proactive AI Project</div>
+          <h1>Designing Proactive AI Teammates for Time-Sensitive Collaboration</h1>
+          <p class="hero-question">
+            How should AI participate in human teamwork: as a facilitator that guides the group, or as a peer that contributes ideas?
+          </p>
+          <div class="meta-pills">
+            <span class="meta-pill">ACM CHI 2026</span>
+            <span class="meta-pill">UX Research</span>
+            <span class="meta-pill">Human-AI Collaboration</span>
+            <span class="meta-pill">Honda Research Institute US</span>
+          </div>
+        </div>
+
+        <div class="hero-note">
+          <h2>Why this matters for UX research</h2>
+          <p>This project focuses on the interaction cost of AI in teamwork: when support is helpful, when it becomes disruptive, and how role design changes collaboration quality.</p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="anchor-nav" aria-label="Project sections">
+      <a href="#introduction">Introduction</a>
+      <a href="#collaboration">Collaboration</a>
+      <a href="#role">My Role</a>
+      <a href="#objective">Project Objective</a>
+      <a href="#question">The Question</a>
+      <a href="#designed">What I Designed</a>
+      <a href="#study">Study Design</a>
+      <a href="#findings">What I Found</a>
+      <a href="#takeaways">Takeaways</a>
+      <a href="#impact">Impact</a>
+    </nav>
+
+    <div class="content-grid">
+      <div class="main-column">
+        <section class="section-card" id="introduction">
+          <div class="section-kicker"><i class="fas fa-compass"></i> Introduction</div>
+          <div class="split-card">
+            <div>
+              <h2>From reactive tools to active teammates</h2>
+              <p>Most AI systems still behave like tools. They wait for prompts, answer questions, and stay at the edge of collaboration.</p>
+              <p>But real teamwork is dynamic. Teams coordinate, split work, get stuck, recover, and rethink. I wanted to understand what happens when AI becomes part of that process.</p>
+              <p>In this project, I designed and studied two proactive AI roles for co-located collaborative problem-solving: a facilitator that supported coordination and reflection, and a peer that contributed ideas, hints, and follow-up support.</p>
+              <p>I built the system, designed the study environment, and ran a mixed-methods evaluation with 24 participants. The work was published at ACM CHI 2026.</p>
+            </div>
+
+            <div class="fact-stack">
+              <div class="fact-box">
+                <span class="fact-label">Format</span>
+                <strong>Technology probe study</strong>
+                <p>Two proactive AI teammates were designed to test contrasting roles in the same collaborative task.</p>
+              </div>
+              <div class="fact-box">
+                <span class="fact-label">Setting</span>
+                <strong>Co-located teamwork</strong>
+                <p>Teams solved time-sensitive collaborative problems in a controlled yet socially dynamic environment.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="collaboration">
+          <div class="section-kicker"><i class="fas fa-handshake"></i> Cross functional Collaboration with Honda Research Institute as a part of internship</div>
+          <p>This project was conducted in collaboration with Honda Research Institute US during my internship. The work brought together research questions about human-AI teamwork, product-facing questions about proactive behavior, and practical implementation decisions for the AI probes.</p>
+          <p>That collaboration shaped the study into something both rigorous and future-facing: not just whether proactive AI can work, but how different participation styles might translate into real collaborative systems.</p>
+        </section>
+
+        <section class="section-card" id="role">
+          <div class="section-kicker"><i class="fas fa-user-tie"></i> My Role as Lead Researcher</div>
+          <h2>End-to-end ownership of the research, prototype, and evaluation</h2>
+          <div class="role-grid">
+            <div class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-pencil-ruler"></i></span>
+                <h3>Research framing</h3>
+              </div>
+              <p>I defined the core UX question around proactive AI roles in teamwork and translated it into two comparable AI probes.</p>
+            </div>
+            <div class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-laptop-code"></i></span>
+                <h3>System and study design</h3>
+              </div>
+              <p>I built the system, designed the collaborative study environment, and created the task flow needed for a within-subjects comparison.</p>
+            </div>
+            <div class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-clipboard-list"></i></span>
+                <h3>Mixed-methods research</h3>
+              </div>
+              <p>I ran the evaluation, captured behavioral and self-report evidence, and connected qualitative interpretation with team outcomes.</p>
+            </div>
+            <div class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-sitemap"></i></span>
+                <h3>Design synthesis</h3>
+              </div>
+              <p>I synthesized the findings into design principles for how collaborative AI should time, frame, and adapt its participation.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="objective">
+          <div class="section-kicker"><i class="fas fa-bullseye"></i> Project Objective</div>
+          <h2>Understand what role proactive AI should play in human teamwork</h2>
+          <p>The objective was not to build a final product. It was to create two clearly different AI participation styles and evaluate how each changed collaboration.</p>
+          <p>From a UX research perspective, the project focused on role design, interaction cost, team dynamics, and legibility. The core question was whether proactive AI should guide the team as a facilitator or join the work as a peer.</p>
+        </section>
+
+        <section class="section-card" id="question">
+          <div class="section-kicker"><i class="fas fa-question-circle"></i> The Question</div>
+          <h2>If AI becomes part of a team, what role should it play?</h2>
+          <p>Most collaborative AI today is reactive. Someone in the group has to pause, prompt, interpret the result, and bring it back into the conversation. That interaction cost matters in fast, shared work.</p>
+          <p>So I asked a more specific UX question: should AI behave like a facilitator, helping the group coordinate and reflect, or like a peer, offering ideas and problem-solving support as an equal participant?</p>
+        </section>
+
+        <section class="section-card" id="designed">
+          <div class="section-kicker"><i class="fas fa-shapes"></i> What I Designed</div>
+          <h2>Two proactive AI probes for the same collaborative task</h2>
+          <div class="role-grid">
+            <article class="role-card facilitator">
+              <div class="role-card-header">
+                <span class="icon-badge"><i class="fas fa-route"></i></span>
+                <div>
+                  <h3>Fiona, the facilitator</h3>
+                  <p>Process-focused AI support</p>
+                </div>
+              </div>
+              <ul>
+                <li>Suggested collaboration strategies</li>
+                <li>Gave time reminders</li>
+                <li>Generated periodic summaries of team discussion</li>
+              </ul>
+            </article>
+
+            <article class="role-card peer">
+              <div class="role-card-header">
+                <span class="icon-badge"><i class="fas fa-lightbulb"></i></span>
+                <div>
+                  <h3>Ava, the peer</h3>
+                  <p>Task-focused AI support</p>
+                </div>
+              </div>
+              <ul>
+                <li>Offered proactive thoughts every 3 minutes</li>
+                <li>Supported lightweight follow-up prompts</li>
+                <li>Stayed available as an embedded chat partner</li>
+              </ul>
+            </article>
+          </div>
+          <p style="margin-top: 1rem;">The goal was not to build a final product, but to instantiate two clearly different ways AI could participate in teamwork.</p>
+        </section>
+
+        <section class="section-card" id="study">
+          <div class="section-kicker"><i class="fas fa-vial"></i> Study Design</div>
+          <h2>Digital escape rooms as a testbed for collaborative problem-solving</h2>
+          <p>I used digital escape rooms because they naturally create time pressure, distributed information, shared attention demands, and fast coordination cycles. That made them a strong setting for observing how proactive AI affected real team interaction.</p>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <strong>24</strong>
+              <span>participants in the mixed-methods evaluation</span>
+            </div>
+            <div class="stat-card">
+              <strong>6</strong>
+              <span>teams of four in a within-subjects design</span>
+            </div>
+            <div class="stat-card">
+              <strong>3</strong>
+              <span>conditions: no AI, peer AI, facilitator AI</span>
+            </div>
+          </div>
+
+          <p>The study combined behavioral observation, real-time transcripts, surveys, and focus group interviews. This made it possible to compare not only task outcomes, but also how teams felt, coordinated, and adapted over time.</p>
+        </section>
+
+        <section class="section-card" id="findings">
+          <div class="section-kicker"><i class="fas fa-search"></i> What I Found</div>
+          <h2>AI changed team dynamics, not just performance</h2>
+          <div class="qual-results-figure">
+            <h3>Qualitative results snapshot</h3>
+            <p>The study interface and probe behaviors helped surface how teams interpreted, used, ignored, or pushed back on proactive AI participation over time.</p>
+            <img src="/media/proactive_agent_study.png" alt="Study interface for proactive AI teammates in collaborative work" />
+          </div>
+          <div class="finding-list">
+            <article class="finding-card">
+              <span class="finding-number">1</span>
+              <h3>The peer agent felt helpful, but came at a cost</h3>
+              <p>Ava sometimes gave timely hints, supported memory offloading, and opened space for exploration. But it also increased workload, disrupted flow, and sometimes pulled people into side conversations with the AI.</p>
+            </article>
+
+            <article class="finding-card">
+              <span class="finding-number">2</span>
+              <h3>The facilitator agent was quieter, but more effective</h3>
+              <p>Fiona often faded into the background, especially when teams felt the summaries were repetitive. Yet teams performed best overall in the facilitator condition. That revealed an important design tension between felt usefulness and actual team support.</p>
+            </article>
+
+            <article class="finding-card">
+              <span class="finding-number">3</span>
+              <h3>Role design shaped trajectories across teams</h3>
+              <p>Some teams relied on AI and later became more reflective. Others became dependent and then frustrated. This suggested that collaborative AI should adapt over time rather than hold a fixed role.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" id="takeaways">
+          <div class="section-kicker"><i class="fas fa-layer-group"></i> Design Takeaways</div>
+          <h2>Four principles for collaborative AI design</h2>
+          <div class="takeaway-grid">
+            <article class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-stopwatch"></i></span>
+                <h3>Use proactivity carefully</h3>
+              </div>
+              <p>Too much intervention increases cognitive load, even when the AI is technically helpful.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-comments"></i></span>
+                <h3>Support the team, not just the task</h3>
+              </div>
+              <p>AI can disrupt communication even when its ideas are good, so social fit matters as much as output quality.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-eye"></i></span>
+                <h3>Make reasoning legible</h3>
+              </div>
+              <p>People need enough rationale to evaluate confident AI suggestions and stay appropriately critical.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="takeaway-card-header">
+                <span class="icon-badge"><i class="fas fa-sync-alt"></i></span>
+                <h3>Adapt the role over time</h3>
+              </div>
+              <p>Early-stage structure and later-stage idea support may require different AI behavior within the same workflow.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" id="impact">
+          <div class="section-kicker"><i class="fas fa-seedling"></i> Impact</div>
+          <h2>Published research with product-level implications</h2>
+          <p>This work was published at ACM CHI 2026 and conducted in collaboration with Honda Research Institute US.</p>
+          <p>More importantly, it helped me articulate a product-level insight I now carry into my broader UX research work:</p>
+
+          <div class="quote-panel">
+            <p>The best collaborative AI is not the AI that speaks the most. It is the AI that knows when, how, and why to participate.</p>
+            <strong>Research takeaway</strong>
+          </div>
+
+          <div class="impact-banner">
+            <div>
+              <strong>Paper and portfolio flow</strong>
+              <p style="margin: 0.3rem 0 0; color: var(--muted);">This page translates the paper into a UX research case study focused on framing, study design, synthesis, and design implications.</p>
+            </div>
+            <a href="/uploads/CHI2026-Paper.pdf" target="_blank" rel="noopener">Open paper PDF</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <div class="side-card">
+          <h3>At a glance</h3>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Research focus</strong>
+              <span>Proactive role design for AI in small-group collaboration</span>
+            </div>
+            <div class="mini-item">
+              <strong>Methods</strong>
+              <span>Within-subjects mixed-methods study with transcripts, surveys, observation, and focus groups</span>
+            </div>
+            <div class="mini-item">
+              <strong>Participants</strong>
+              <span>24 participants across six four-person teams</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>Why this project stands out for UX research roles</h3>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Strong framing</strong>
+              <span>Starts from a clear collaboration problem, not just a model capability.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Probe-based evaluation</strong>
+              <span>Uses designed interventions to compare two role concepts in the same task environment.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Actionable synthesis</strong>
+              <span>Findings translate directly into role timing, transparency, and adaptation principles.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

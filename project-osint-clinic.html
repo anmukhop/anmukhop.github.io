@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="Anirban Mukhopadhyay" />
+  <meta name="description" content="Case study on designing AI-augmented collaborative investigations for cybersecurity through the OSINT Clinic." />
+  <meta name="theme-color" content="#f5efe4" />
+  <title>OSINT Clinic | Anirban Mukhopadhyay</title>
+  <script>
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.style.colorScheme = "light";
+  </script>
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/css/wowchemy.246129d782c938a644fe2d653d8a976f.css" />
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg: #f7f1e7;
+      --paper: #fffdf8;
+      --ink: #172033;
+      --muted: #5a667e;
+      --line: #e5dccd;
+      --accent: #2158a8;
+      --accent-soft: #e8f0ff;
+      --gold-soft: #fff2d9;
+      --green-soft: #e7f5ef;
+      --shadow: 0 18px 42px rgba(27, 36, 58, 0.08);
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: "Montserrat", "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(243, 182, 85, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(33, 88, 168, 0.12), transparent 26%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-copy {
+      padding: 1.55rem 1.65rem 1.7rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: #946205;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+      line-height: 1.16;
+      margin-bottom: 0.8rem;
+      max-width: none;
+    }
+
+    .hero-question {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 52rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-pill {
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #1e447d;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .hero-note {
+      padding: 1rem;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .hero-note h2 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .anchor-nav {
+      position: sticky;
+      top: 0.8rem;
+      z-index: 5;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      padding: 0.9rem 1rem;
+      border-radius: 22px;
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(27, 36, 58, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .anchor-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #325281;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: #f0f4fb;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .main-column {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .side-column {
+      position: sticky;
+      top: 4.8rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .section-card,
+    .side-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-card {
+      padding: 1.65rem;
+    }
+
+    .side-card {
+      padding: 1.1rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      color: #8d6519;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-card h2 {
+      font-size: 1.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .section-card p,
+    .section-card li {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 0.97rem;
+    }
+
+    .section-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .split-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .fact-stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .fact-box {
+      padding: 1rem;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #7f6e4f;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .fact-box strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .fact-box p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .question-grid,
+    .takeaway-grid,
+    .insight-grid,
+    .designed-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .question-card,
+    .takeaway-card,
+    .insight-card,
+    .designed-card,
+    .phase-card {
+      padding: 1.15rem;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .icon-badge {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 1rem;
+      flex: 0 0 auto;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 1rem 0 1.1rem;
+    }
+
+    .stat-card {
+      padding: 1rem;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.65rem;
+      margin-bottom: 0.2rem;
+      color: var(--ink);
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .phase-stack {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .phase-card {
+      position: relative;
+      padding-left: 4.2rem;
+    }
+
+    .phase-number {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: #9b6708;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .clinic-figure {
+      margin: 1rem 0 1.15rem;
+      padding: 1rem;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .clinic-figure p {
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .clinic-figure img {
+      width: min(100%, 560px);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #f8f4ec;
+    }
+
+    .quote-panel {
+      padding: 1.2rem;
+      border-radius: 22px;
+      background: linear-gradient(140deg, #1f467f, #294f8b);
+      color: #fff;
+    }
+
+    .quote-panel p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .quote-panel strong {
+      display: block;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .impact-banner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+      padding: 1.15rem 1.2rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--green-soft), #fffdf8);
+      border: 1px solid #d8ebdf;
+    }
+
+    .impact-banner a {
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .side-card h3 {
+      font-size: 0.96rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .mini-item {
+      padding: 0.8rem 0.85rem;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
+    }
+
+    .mini-item span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1060px) {
+      .content-grid,
+      .split-card {
+        grid-template-columns: 1fr;
+      }
+
+      .side-column {
+        position: static;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        padding: 1rem 0.9rem 3rem;
+      }
+
+      .hero-copy,
+      .section-card {
+        padding: 1.2rem;
+      }
+
+      .question-grid,
+      .takeaway-grid,
+      .insight-grid,
+      .designed-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .anchor-nav {
+        top: 0.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <div class="topbar">
+      <a href="/portfolio.html">Back to portfolio</a>
+      <a href="/">Home</a>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div>
+          <div class="eyebrow"><i class="fas fa-shield-alt"></i> OSINT Clinic Project</div>
+          <h1>Designing AI-Augmented Collaborative Investigations for Cybersecurity</h1>
+          <p class="hero-question">How can collaborative vulnerability assessments be scaled using open-source intelligence, and where can generative AI meaningfully support novice investigators without undermining trust or judgment?</p>
+          <div class="meta-pills">
+            <span class="meta-pill">ACM CHI 2025</span>
+            <span class="meta-pill">UX Research</span>
+            <span class="meta-pill">Human-AI Collaboration</span>
+            <span class="meta-pill">Cybersecurity</span>
+            <span class="meta-pill">Virginia Tech Crowd Intelligence Lab</span>
+          </div>
+        </div>
+
+        <div class="hero-note">
+          <h2>Why this matters for UX research</h2>
+          <p>This project sits at the intersection of collaborative work, novice learning, and sensitive-domain AI use. It asks how human-centered design can make investigative systems more scalable while preserving trust, coordination, and accountability.</p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="anchor-nav" aria-label="Project sections">
+      <a href="#overview">Overview</a>
+      <a href="#problem">The Problem</a>
+      <a href="#role">My Role</a>
+      <a href="#questions">Research Questions</a>
+      <a href="#designed">What I Designed</a>
+      <a href="#study">Study Design</a>
+      <a href="#insights">Key UX Insights</a>
+      <a href="#implications">Design Implications</a>
+      <a href="#impact">Impact</a>
+    </nav>
+
+    <div class="content-grid">
+      <div class="main-column">
+        <section class="section-card" id="overview">
+          <div class="section-kicker"><i class="fas fa-compass"></i> Overview</div>
+          <div class="split-card">
+            <div>
+              <h2>Using public data to rethink cybersecurity investigations</h2>
+              <p>Small businesses are frequent targets of cyberattacks but often lack the expertise or resources to conduct thorough security assessments. Traditional vulnerability assessments require specialized technical skills, internal system access, and significant time investment.</p>
+              <p>In this project, I explored whether open-source intelligence, information available publicly on the web, could be used to conduct meaningful vulnerability assessments for organizations.</p>
+              <p>OSINT investigations are complex. Analysts must sift through noisy public data, verify evidence, coordinate findings, and document investigative workflows. To address those challenges, I designed and studied an OSINT Clinic where student investigators collaboratively conducted vulnerability assessments using only publicly available data, then explored how generative AI could augment that workflow.</p>
+              <p>This work resulted in a longitudinal co-design study and real-world pilot deployments with small businesses, culminating in design insights for AI-augmented investigative systems.</p>
+            </div>
+
+            <div class="fact-stack">
+              <div class="fact-box">
+                <span class="fact-label">Format</span>
+                <strong>Longitudinal co-design study</strong>
+                <p>An academic-year study combining participatory workshops, probes, and real-world pilot investigations.</p>
+              </div>
+              <div class="fact-box">
+                <span class="fact-label">Domain</span>
+                <strong>Cybersecurity investigations</strong>
+                <p>Focused on scalable vulnerability assessment using only publicly available information.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="problem">
+          <div class="section-kicker"><i class="fas fa-exclamation-circle"></i> The Problem</div>
+          <h2>Small businesses face risk, but traditional assessment models do not scale</h2>
+          <p>Small businesses face serious cybersecurity risks but often lack the resources to conduct vulnerability assessments. According to industry reports, 43% of cyber breaches target small businesses, yet many organizations do not have the expertise to identify potential attack surfaces.</p>
+          <p>Cybersecurity clinics have emerged as a promising model, where students perform security assessments while gaining hands-on experience. But traditional clinics depend on internal system access, specialized security tools, and high levels of technical expertise, which limits how scalable the model can be.</p>
+          <p>I explored a different approach: what if vulnerability assessments could be conducted using only publicly available data? That question led to the OSINT Clinic.</p>
+        </section>
+
+        <section class="section-card" id="role">
+          <div class="section-kicker"><i class="fas fa-user-tie"></i> My Role</div>
+          <h2>Led the research and design of the OSINT Clinic program</h2>
+          <div class="question-grid">
+            <div class="question-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-search"></i></span>
+                <h3>Research framing</h3>
+              </div>
+              <p>I framed the research questions and defined the clinic as a UX research problem around collaboration, scalability, and AI augmentation.</p>
+            </div>
+            <div class="question-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-project-diagram"></i></span>
+                <h3>Program and system design</h3>
+              </div>
+              <p>I designed the OSINT clinic model, participatory co-design process, and AI design probes used to test support concepts.</p>
+            </div>
+            <div class="question-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-users"></i></span>
+                <h3>Longitudinal UX research</h3>
+              </div>
+              <p>I conducted the longitudinal study, analyzed collaborative investigation workflows, and traced how novice expertise developed over time.</p>
+            </div>
+            <div class="question-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-lightbulb"></i></span>
+                <h3>Design synthesis</h3>
+              </div>
+              <p>I translated findings into design implications for AI-augmented investigative systems in sensitive domains.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="questions">
+          <div class="section-kicker"><i class="fas fa-question-circle"></i> Research Questions</div>
+          <h2>Four questions guided the clinic and the AI strategy</h2>
+          <div class="question-grid">
+            <div class="question-card"><p>How can vulnerability assessments be scaled using OSINT?</p></div>
+            <div class="question-card"><p>What challenges arise in collaborative OSINT investigations?</p></div>
+            <div class="question-card"><p>How can generative AI support novice investigators?</p></div>
+            <div class="question-card"><p>How can AI be integrated into real-world investigative workflows?</p></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="designed">
+          <div class="section-kicker"><i class="fas fa-shapes"></i> What I Designed</div>
+          <h2>The OSINT Clinic</h2>
+          <p>The OSINT Clinic is a collaborative investigation program where student analysts conduct cybersecurity vulnerability assessments using publicly available information.</p>
+
+          <div class="designed-grid">
+            <article class="designed-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-bug"></i></span>
+                <h3>What investigators looked for</h3>
+              </div>
+              <ul>
+                <li>Exposed employee information</li>
+                <li>Leaked credentials</li>
+                <li>Network infrastructure vulnerabilities</li>
+                <li>Unprotected digital assets</li>
+                <li>Public attack surfaces</li>
+              </ul>
+            </article>
+
+            <article class="designed-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-toolbox"></i></span>
+                <h3>OSINT techniques used</h3>
+              </div>
+              <ul>
+                <li>Social media investigation</li>
+                <li>Satellite imagery analysis</li>
+                <li>Network scanning tools</li>
+                <li>Breach databases</li>
+                <li>Website infrastructure inspection</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="clinic-figure">
+            <h3>Collaborative investigation workspace</h3>
+            <p>The clinic provided a structured environment where students collaborated on real investigations, coordinated evidence, and tested where AI support could be useful.</p>
+            <img src="/media/OSINTClinic_Study.png" alt="OSINT Clinic collaborative investigation workspace" />
+          </div>
+
+          <p>Because OSINT relies only on public data, the approach avoids risks associated with internal network access while still revealing meaningful security insights.</p>
+        </section>
+
+        <section class="section-card" id="study">
+          <div class="section-kicker"><i class="fas fa-vial"></i> Study Design</div>
+          <h2>Longitudinal co-design study across an academic year</h2>
+          <p>The study involved six undergraduate student investigators working collaboratively in the clinic. Students met twice weekly for training, practice investigations, and design workshops.</p>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <strong>6</strong>
+              <span>student investigators in the longitudinal study</span>
+            </div>
+            <div class="stat-card">
+              <strong>3</strong>
+              <span>real small businesses assessed in the final phase</span>
+            </div>
+            <div class="stat-card">
+              <strong>3</strong>
+              <span>phases spanning workshop, probe design, and pilot deployment</span>
+            </div>
+          </div>
+
+          <div class="phase-stack">
+            <article class="phase-card">
+              <span class="phase-number">1</span>
+              <h3>Identifying challenges in OSINT investigations</h3>
+              <p>Through participatory workshops, students mapped investigative workflows using a structured design canvas. This surfaced challenges in planning, collecting relevant data, verifying sources, analyzing large volumes of information, documenting evidence, and coordinating across uneven expertise.</p>
+            </article>
+
+            <article class="phase-card">
+              <span class="phase-number">2</span>
+              <h3>Co-designing AI support</h3>
+              <p>I introduced generative AI probes to explore how AI could augment investigation workflows. We experimented with AI-generated investigative prompts, workflow support tools, collaboration platform features, and structured prompt libraries for generating leads, summarizing findings, organizing evidence, and guiding novice analysts.</p>
+            </article>
+
+            <article class="phase-card">
+              <span class="phase-number">3</span>
+              <h3>Real-world investigations</h3>
+              <p>Students conducted vulnerability assessments for three real small businesses. The AI-augmented workflows were used during these investigations to evaluate their practical value and expose both the benefits and limits of integrating AI into investigative work.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" id="insights">
+          <div class="section-kicker"><i class="fas fa-search"></i> Key UX Insights</div>
+          <h2>What collaborative investigation work actually needed</h2>
+          <div class="insight-grid">
+            <article class="insight-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-users-cog"></i></span>
+                <h3>Investigative work is deeply collaborative</h3>
+              </div>
+              <p>Teams had to coordinate across sources, verify each other’s findings, and synthesize fragmented evidence. Students often struggled to maintain shared awareness of what had been investigated, which leads were promising, and who owned each task.</p>
+            </article>
+
+            <article class="insight-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-compass"></i></span>
+                <h3>Novice investigators struggle with exploration</h3>
+              </div>
+              <p>Students often did not know where to start, how to pivot when a lead failed, or which tools fit a given task. AI prompts were especially helpful for generating investigative directions and reducing the blank-page problem.</p>
+            </article>
+
+            <article class="insight-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-graduation-cap"></i></span>
+                <h3>AI can scaffold expertise</h3>
+              </div>
+              <p>Generative AI helped bridge knowledge gaps by suggesting investigative strategies, summarizing large volumes of data, and helping students structure reports. That allowed novice analysts to approach work that normally requires deeper domain expertise.</p>
+            </article>
+
+            <article class="insight-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-user-shield"></i></span>
+                <h3>Trust and privacy are major barriers</h3>
+              </div>
+              <p>Students were cautious about sharing sensitive investigation details with AI systems, relying too heavily on AI outputs, and maintaining ethical standards. This exposed a socio-technical gap between AI capability and trust in sensitive domains.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" id="implications">
+          <div class="section-kicker"><i class="fas fa-layer-group"></i> Design Implications</div>
+          <h2>Principles for AI-augmented investigative systems</h2>
+          <div class="takeaway-grid">
+            <article class="takeaway-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-search-plus"></i></span>
+                <h3>Support exploration, not replacement</h3>
+              </div>
+              <p>Investigative work requires human judgment. AI should generate leads and structure workflows rather than provide final answers.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-project-diagram"></i></span>
+                <h3>Make collaboration awareness explicit</h3>
+              </div>
+              <p>Investigative tools should help teams maintain shared awareness of ongoing leads, evidence collected, and investigation progress.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-chalkboard-teacher"></i></span>
+                <h3>Scaffold learning</h3>
+              </div>
+              <p>AI can help novice investigators develop expertise through guided workflows, prompts, and structure rather than simple automation.</p>
+            </article>
+
+            <article class="takeaway-card">
+              <div class="card-header">
+                <span class="icon-badge"><i class="fas fa-eye"></i></span>
+                <h3>Design for transparency in sensitive domains</h3>
+              </div>
+              <p>Investigators need to understand how AI produced its outputs to maintain trust, accountability, and ethical standards.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" id="impact">
+          <div class="section-kicker"><i class="fas fa-seedling"></i> Impact</div>
+          <h2>Human-centered design for scalable cybersecurity investigations</h2>
+          <p>The OSINT Clinic demonstrates how human-centered design can transform complex investigative workflows.</p>
+          <p>Key contributions include a scalable model for OSINT-based vulnerability assessments, a co-design methodology for AI-augmented investigations, empirical insights into collaborative OSINT workflows, and design guidelines for AI-supported investigative systems.</p>
+
+          <div class="quote-panel">
+            <p>The project showed that AI is most valuable in cybersecurity investigations when it helps novice teams explore, coordinate, and learn, without displacing the human judgment required for sensitive work.</p>
+            <strong>Research takeaway</strong>
+          </div>
+
+          <div class="impact-banner">
+            <div>
+              <strong>Beyond the study</strong>
+              <p style="margin: 0.3rem 0 0; color: var(--muted);">The clinic also provided real-world cybersecurity assessments for small businesses while training the next generation of analysts.</p>
+            </div>
+            <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713283" target="_blank" rel="noopener">Open ACM Digital Library</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <div class="side-card">
+          <h3>At a glance</h3>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Research focus</strong>
+              <span>AI-augmented collaborative investigations for cybersecurity using OSINT</span>
+            </div>
+            <div class="mini-item">
+              <strong>Methods</strong>
+              <span>Longitudinal co-design, participatory workshops, AI probes, and real-world pilots</span>
+            </div>
+            <div class="mini-item">
+              <strong>Context</strong>
+              <span>Virginia Tech Crowd Intelligence Lab and small-business vulnerability assessment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>Why this project stands out for UX research roles</h3>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Systems framing</strong>
+              <span>Reframes cybersecurity assessment as a collaborative workflow and learning problem.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Participatory process</strong>
+              <span>Uses co-design and probes to surface needs before locking in product assumptions.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Sensitive-domain AI</strong>
+              <span>Balances AI capability with privacy, trust, and accountability constraints.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

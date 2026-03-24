@@ -3,6 +3,48 @@
 
 <head>
   <style>
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #1d2740 !important;
+  }
+
+  html.dark,
+  html[data-theme="dark"] {
+    color-scheme: light !important;
+  }
+
+  html.dark body,
+  html[data-theme="dark"] body,
+  html.dark .page-wrapper,
+  html[data-theme="dark"] .page-wrapper,
+  html.dark .page-header,
+  html[data-theme="dark"] .page-header,
+  html.dark .navbar,
+  html[data-theme="dark"] .navbar,
+  html.dark .page-body,
+  html[data-theme="dark"] .page-body {
+    background: #ffffff !important;
+    color: #1d2740 !important;
+  }
+
+  html.dark .navbar .nav-link,
+  html[data-theme="dark"] .navbar .nav-link,
+  html.dark .navbar-brand,
+  html[data-theme="dark"] .navbar-brand {
+    color: #1d2740 !important;
+  }
+
+  .nav-icons,
+  #search,
+  .search-modal {
+    display: none !important;
+  }
+
   /* ===== Publications Section Styling ===== */
   .pubs-section {
     font-size: 0.9rem;         /* smaller overall text */
@@ -96,6 +138,7 @@
   .portfolio-title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: #000;
   }
 
   .portfolio-subtitle {
@@ -103,6 +146,28 @@
     margin: 0 auto 1.2rem;
     color: #4a4a4a;
     font-size: 0.98rem;
+  }
+
+  .portfolio-intro {
+    max-width: 820px;
+    margin: 0 auto 1.35rem;
+    padding: 1.15rem 1.25rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid #dfe6f3;
+    box-shadow: 0 10px 24px rgba(24, 32, 56, 0.05);
+    text-align: left;
+  }
+
+  .portfolio-intro p {
+    margin: 0;
+    color: #43506a;
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .portfolio-intro p + p {
+    margin-top: 0.7rem;
   }
 
   .portfolio-pills {
@@ -124,9 +189,11 @@
 
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.6rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
     padding: 0 1.5rem 0.5rem;
+    max-width: 820px;
+    margin: 0 auto;
   }
 
   .portfolio-card {
@@ -137,39 +204,55 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
-  .portfolio-thumb {
-    min-height: 160px;
-    display: flex;
-    align-items: flex-end;
-    padding: 1rem 1.2rem;
-    color: #1a2a3a;
+  .portfolio-card:hover,
+  .portfolio-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(24, 32, 56, 0.12);
+    border-color: #cbd7ef;
+  }
+
+  .portfolio-image-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: #edf2fb;
+  }
+
+  .portfolio-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19, 29, 50, 0.02), rgba(19, 29, 50, 0.18));
+  }
+
+  .portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .portfolio-image-top {
+    object-position: center 16%;
+  }
+
+  .portfolio-image-center {
+    object-position: center center;
+  }
+
+  .portfolio-card-kicker {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-  }
-
-  .portfolio-thumb span {
-    background: rgba(255, 255, 255, 0.88);
-    padding: 0.35rem 0.65rem;
-    border-radius: 10px;
-  }
-
-  .thumb-chi {
-    background: linear-gradient(135deg, #e8f6ee, #e1ecff);
-  }
-
-  .thumb-clinic {
-    background: linear-gradient(135deg, #fff2db, #e8f1ff);
-  }
-
-  .thumb-ors {
-    background: linear-gradient(135deg, #f8ecff, #e7f7ff);
-  }
-
-  .thumb-cosint {
-    background: linear-gradient(135deg, #fef1f5, #e8fff5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #000;
   }
 
   .portfolio-body {
@@ -203,6 +286,13 @@
   .portfolio-card h3 {
     font-size: 1.05rem;
     margin: 0 0 0.6rem;
+    color: #000;
+  }
+
+  #ux-portfolio .portfolio-title,
+  #ux-portfolio .portfolio-card-kicker,
+  #ux-portfolio .portfolio-card h3 {
+    color: #000 !important;
   }
 
   .portfolio-card p {
@@ -213,42 +303,28 @@
 
   .portfolio-card .portfolio-desc {
     font-size: 0.88rem;
+    margin-bottom: 0.55rem;
   }
 
-  .portfolio-claims {
-    display: grid;
-    gap: 0.65rem;
+  .portfolio-role-summary {
+    margin-bottom: 0.95rem;
+    font-size: 0.82rem;
+    color: #35507d;
+    line-height: 1.5;
   }
 
-  .portfolio-claims h4 {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #2a3b58;
-    margin-bottom: 0.25rem;
-  }
-
-  .portfolio-claims ul {
-    margin: 0;
-    padding-left: 1rem;
-    font-size: 0.85rem;
-    color: #3f3f3f;
-  }
-
-  .portfolio-links {
-    margin-top: 0.9rem;
+  .portfolio-card-footer {
+    margin-top: 1rem;
     display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  .portfolio-link {
-    font-size: 0.78rem;
-    font-weight: 600;
+  .portfolio-card-cta {
+    font-size: 0.82rem;
+    font-weight: 700;
     color: #244aa5;
-    background: #eef3ff;
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
   }
 
   @media (max-width: 900px) {
@@ -265,6 +341,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <script>
+    document.documentElement.classList.remove('dark');
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.style.colorScheme = 'light';
+    try {
+      localStorage.setItem('wcTheme', 'light');
+      localStorage.setItem('theme', 'light');
+    } catch (e) {}
+  </script>
   
   
   
@@ -875,46 +960,6 @@
           
         </ul>
       </div>
-
-      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
-
-        
-        
-          
-        
-
-        
-        
-        <li class="nav-item">
-          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
-        </li>
-        
-
-        
-        
-        <li class="nav-item dropdown theme-dropdown">
-          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
-            <i class="fas fa-moon" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item js-set-theme-light">
-              <span>Light</span>
-            </a>
-            <a href="#" class="dropdown-item js-set-theme-dark">
-              <span>Dark</span>
-            </a>
-            <a href="#" class="dropdown-item js-set-theme-auto">
-              <span>Automatic</span>
-            </a>
-          </div>
-        </li>
-        
-
-        
-        
-
-      </ul>
-
     </div>
   </nav>
 </header>
@@ -1007,11 +1052,15 @@
           <div class="portfolio-kicker">UX Research Portfolio</div>
           <h2 class="portfolio-title">Featured Research Projects</h2>
           <p class="portfolio-subtitle">
-            Case-study overviews centered on AI-first experiences, collaborative workspaces, and transparent, proactive, adaptive agents. Each project highlights prototyping plus mixed methods (qualitative + quantitative) and shows how impact evolved through feedback-driven iteration.
+            Selected HCI and UX research case studies on generative AI, teamwork, and collaborative sensemaking.
           </p>
+          <div class="portfolio-intro">
+            <p>I am an Human-Centered AI Researcher who designs, prototypes, and evaluates generative AI-powered applications that transform teamwork in problem-solving, creative, and sensemaking contexts.</p>
+            <p>Alongside my doctoral research, I have worked with the Microsoft Mixed Reality Design and UX Research team and with SharePoint, bringing research-driven product thinking to collaborative AI and workplace experiences.</p>
+          </div>
           <div class="portfolio-pills">
             <span class="portfolio-pill">AI Agents</span>
-            <span class="portfolio-pill">Proactive + Adaptive</span>
+            <span class="portfolio-pill">Proactive + Adaptive Agents</span>
             <span class="portfolio-pill">Transparency</span>
             <span class="portfolio-pill">Collaborative Workspaces</span>
             <span class="portfolio-pill">Mixed Methods</span>
@@ -1020,197 +1069,63 @@
         </div>
 
         <div class="portfolio-grid">
-          <article class="portfolio-card">
-            <div class="portfolio-thumb thumb-chi">
-              <span>CHI 2026 • Proactive AI Roles</span>
+          <a class="portfolio-card" href="/project-chi-2026.html" aria-label="Open proactive AI roles project details">
+            <div class="portfolio-image-wrap">
+              <img class="portfolio-image portfolio-image-top" src="/media/proactive_agent_study.png" alt="Proactive agent collaboration study interface" />
             </div>
             <div class="portfolio-body">
+              <div class="portfolio-card-kicker">Proactive AI Roles</div>
               <div class="portfolio-meta">
-                <span>Conditionally Accepted • CHI 2026</span>
-                <span>AI-First Prototyping</span>
+                <span>CHI 2026</span>
+                <span>Time-Sensitive Co-located Collaboration</span>
               </div>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Proactive Agents</span>
-                <span class="portfolio-tag">Transparency</span>
-                <span class="portfolio-tag">Mixed Methods (Qual + Quant)</span>
-              </div>
-              <h3>Exploring the Impact of Proactive Generative AI Agent Roles in Time-Sensitive Collaboration</h3>
+              <h3>Designing Proactive AI Teammates for Time-Sensitive Collaboration</h3>
               <p class="portfolio-desc">
-                UX research on how proactive, transparent agents shape teamwork, memory support, and flow in time-sensitive collaboration.
+                A mixed-methods study of facilitator and peer GenAI roles in collaborative problem-solving under time pressure.
               </p>
-              <div class="portfolio-claims">
-                <div>
-                  <h4>Methods</h4>
-                  <ul>
-                    <li>Technology probes of proactive/adaptive agent behaviors.</li>
-                    <li>Mixed methods: logs, surveys, and qualitative interviews.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Results</h4>
-                  <ul>
-                    <li>Peer agents improved memory support but sometimes disrupted flow.</li>
-                    <li>Facilitator agents clarified coordination with limited outcome gains.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Impact</h4>
-                  <ul>
-                    <li>Iterated transparency cues to reduce over-reliance.</li>
-                    <li>Guidance for AI-first collaborative workspaces.</li>
-                  </ul>
-                </div>
+              <p class="portfolio-role-summary">
+                My role: led probe design and prototyping, study framing, mixed-methods evaluation, and synthesis into design guidance for collaborative GenAI agents.
+              </p>
+              <div class="portfolio-tags">
+                <span class="portfolio-tag">Generative AI</span>
+                <span class="portfolio-tag">Wthin-Subjects Experiment</span>
+                <span class="portfolio-tag">Group Problem-Solving</span>
+                <span class="portfolio-tag">Mixed Methods</span>
               </div>
-              <div class="portfolio-links">
-                <a class="portfolio-link" href="/project-chi-2026.html">Project Details</a>
-                <a class="portfolio-link" href="/uploads/CHI2026-Paper.pdf" target="_blank">Paper PDF</a>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-card-cta">View project details</span>
               </div>
             </div>
-          </article>
+          </a>
 
-          <article class="portfolio-card">
-            <div class="portfolio-thumb thumb-clinic">
-              <span>CHI 2025 • OSINT Clinic</span>
+          <a class="portfolio-card" href="/project-osint-clinic.html" aria-label="Open OSINT Clinic project details">
+            <div class="portfolio-image-wrap">
+              <img class="portfolio-image portfolio-image-center" src="/media/OSINTClinic_Study.png" alt="OSINT Clinic collaborative investigation study" />
             </div>
             <div class="portfolio-body">
+              <div class="portfolio-card-kicker">OSINT Clinic</div>
               <div class="portfolio-meta">
                 <span>CHI 2025</span>
-                <span>Co-Design + Mixed Methods</span>
+                <span>AI-Augmented Investigations</span>
               </div>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Collaborative Agents</span>
-                <span class="portfolio-tag">Transparency</span>
-                <span class="portfolio-tag">AI-First Workflows</span>
-              </div>
-              <h3>OSINT Clinic: Co-designing AI-Augmented Collaborative Investigations</h3>
+              <h3>Designing AI-Augmented Collaborative Investigations for Cybersecurity</h3>
               <p class="portfolio-desc">
-                UX research on AI-first collaborative investigations and how transparent agents shape team decision quality.
+                A longitudinal study of how LLM support shaped learning, teamwork, leadership, and real-world cybersecurity investigation practice.
               </p>
-              <div class="portfolio-claims">
-                <div>
-                  <h4>Methods</h4>
-                  <ul>
-                    <li>Co-design with rapid prototyping and feedback loops.</li>
-                    <li>Mixed methods: interviews, surveys, telemetry.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Results</h4>
-                  <ul>
-                    <li>AI streamlined workflows and improved alignment.</li>
-                    <li>Transparency gaps reduced trust in proactive recommendations.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Impact</h4>
-                  <ul>
-                    <li>Iterated transparency to improve trust.</li>
-                    <li>Blueprint for AI-first collaborative workspaces.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="portfolio-links">
-                <a class="portfolio-link" href="/project-osint-clinic.html">Project Details</a>
-                <a class="portfolio-link" href="https://dl.acm.org/doi/full/10.1145/3706598.3713283" target="_blank">ACM DL</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="portfolio-card">
-            <div class="portfolio-thumb thumb-ors">
-              <span>CSCW 2024 • Research Studios</span>
-            </div>
-            <div class="portfolio-body">
-              <div class="portfolio-meta">
-                <span>CSCW 2024</span>
-                <span>Prototyping + Mixed Methods</span>
-              </div>
+              <p class="portfolio-role-summary">
+                My role: structured the longitudinal study, combined interviews, surveys, and behavioral evidence, and translated findings into recommendations for AI-augmented investigative tools.
+              </p>
               <div class="portfolio-tags">
-                <span class="portfolio-tag">Collaborative Workspaces</span>
-                <span class="portfolio-tag">Adaptive Agents</span>
-                <span class="portfolio-tag">Transparency</span>
+                <span class="portfolio-tag">LLMs</span>
+                <span class="portfolio-tag">Co-Design Study</span>
+                <span class="portfolio-tag">Cybersecurity</span>
+                <span class="portfolio-tag">Team Collaboration</span>
               </div>
-              <h3>OSINT Research Studios: Scaling Expert-Led Investigations</h3>
-              <p class="portfolio-desc">
-                UX research on a collaborative workspace with adaptive support for expert-led investigations.
-              </p>
-              <div class="portfolio-claims">
-                <div>
-                  <h4>Methods</h4>
-                  <ul>
-                    <li>Design-based research with iterative prototyping.</li>
-                    <li>Mixed methods: quality, workload, collaboration.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Results</h4>
-                  <ul>
-                    <li>Improved throughput while maintaining quality.</li>
-                    <li>Reduced dependence on long-term expert-crowd ties.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Impact</h4>
-                  <ul>
-                    <li>Iterated workflows to reduce collaboration friction.</li>
-                    <li>Reusable framework for AI-supported collaboration.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="portfolio-links">
-                <a class="portfolio-link" href="/project-ors.html">Project Details</a>
-                <a class="portfolio-link" href="https://dl.acm.org/doi/10.1145/3637382" target="_blank">ACM DL</a>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-card-cta">View project details</span>
               </div>
             </div>
-          </article>
-
-          <article class="portfolio-card">
-            <div class="portfolio-thumb thumb-cosint">
-              <span>DIS 2023 • CoSINT</span>
-            </div>
-            <div class="portfolio-body">
-              <div class="portfolio-meta">
-                <span>DIS 2023</span>
-                <span>Prototyping + Mixed Methods</span>
-              </div>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Collaborative Agents</span>
-                <span class="portfolio-tag">Proactive Support</span>
-                <span class="portfolio-tag">AI-First Experiences</span>
-              </div>
-              <h3>CoSINT: Collaborative Capture-the-Flag for Misinformation</h3>
-              <p class="portfolio-desc">
-                UX research on proactive guidance and collaboration in high-stakes, time-boxed investigations.
-              </p>
-              <div class="portfolio-claims">
-                <div>
-                  <h4>Methods</h4>
-                  <ul>
-                    <li>Research-through-design with rapid prototyping.</li>
-                    <li>Mixed methods: performance, trust, collaboration.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Results</h4>
-                  <ul>
-                    <li>Proactive cues and collaboration accelerated debunking.</li>
-                    <li>Incentives sometimes conflicted with teamwork.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Impact</h4>
-                  <ul>
-                    <li>Iterated incentives based on feedback to sustain teamwork.</li>
-                    <li>Informs AI-first collaborative experiences.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="portfolio-links">
-                <a class="portfolio-link" href="/project-cosint.html">Project Details</a>
-                <a class="portfolio-link" href="https://doi.org/10.1145/3563657.3595997" target="_blank">DOI</a>
-              </div>
-            </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
