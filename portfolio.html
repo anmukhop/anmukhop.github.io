@@ -148,26 +148,61 @@
     font-size: 0.98rem;
   }
 
-  .portfolio-intro {
-    max-width: 820px;
-    margin: 0 auto 1.35rem;
-    padding: 1.15rem 1.25rem;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid #dfe6f3;
-    box-shadow: 0 10px 24px rgba(24, 32, 56, 0.05);
+  .portfolio-about {
+    max-width: 1020px;
+    margin: 0 auto 1.5rem;
+    padding: 1.35rem 0 1.15rem;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.5fr);
+    gap: 0.8rem;
+    align-items: start;
     text-align: left;
+    position: relative;
   }
 
-  .portfolio-intro p {
+  .portfolio-about::before,
+  .portfolio-about::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(36, 74, 165, 0), rgba(36, 74, 165, 0.35), rgba(36, 74, 165, 0));
+  }
+
+  .portfolio-about::before {
+    top: 0;
+  }
+
+  .portfolio-about::after {
+    bottom: 0;
+  }
+
+  .portfolio-about-heading {
+    padding-left: 1rem;
+    border-left: 3px solid #244aa5;
+  }
+
+  .portfolio-about-kicker {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #244aa5;
+    line-height: 1.2;
+  }
+
+  .portfolio-about-copy p {
     margin: 0;
     color: #43506a;
     font-size: 0.96rem;
-    line-height: 1.7;
+    line-height: 1.8;
   }
 
-  .portfolio-intro p + p {
-    margin-top: 0.7rem;
+  .portfolio-about-copy p + p {
+    margin-top: 0.8rem;
   }
 
   .portfolio-pills {
@@ -330,6 +365,11 @@
   @media (max-width: 900px) {
     .portfolio-title {
       font-size: 1.6rem;
+    }
+    .portfolio-about {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1.1rem 0 0.95rem;
     }
     .portfolio-grid {
       grid-template-columns: 1fr;
@@ -1052,11 +1092,16 @@
           <div class="portfolio-kicker">UX Research Portfolio</div>
           <h2 class="portfolio-title">Featured Research Projects</h2>
           <p class="portfolio-subtitle">
-            Selected HCI and UX research case studies on generative AI, teamwork, and collaborative sensemaking.
+            Selected HCI and UX research case studies on Generative AI, Open Source Intelligence (OSINT), and Collaborative Problem-Solving.
           </p>
-          <div class="portfolio-intro">
-            <p>I am an Human-Centered AI Researcher who designs, prototypes, and evaluates generative AI-powered applications that transform teamwork in problem-solving, creative, and sensemaking contexts.</p>
-            <p>Alongside my doctoral research, I have worked with the Microsoft Mixed Reality Design and UX Research team and with SharePoint, bringing research-driven product thinking to collaborative AI and workplace experiences.</p>
+          <div class="portfolio-about" aria-label="About Me">
+            <div class="portfolio-about-heading">
+              <span class="portfolio-about-kicker">About Me</span>
+            </div>
+            <div class="portfolio-about-copy">
+              <p>I am a Human-Centered AI Researcher who designs, prototypes, and evaluates generative AI-powered applications that transform teamwork across problem-solving, creative, and sensemaking contexts.</p>
+              <p>Alongside my doctoral research, I have product research experiences at the Microsoft Mixed Reality Design and UX Research team and the SharePoint team, and foundational research experience at Honda Research Institute.</p>
+            </div>
           </div>
           <div class="portfolio-pills">
             <span class="portfolio-pill">AI Agents</span>
